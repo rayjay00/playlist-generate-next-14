@@ -10,6 +10,19 @@ const nextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/spotify-auth-callback",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-cache",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
