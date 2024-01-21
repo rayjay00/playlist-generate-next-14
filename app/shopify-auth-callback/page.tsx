@@ -3,12 +3,27 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 
 import { generateplaylist } from "../actions";
+import { Playlist } from "./playlist";
 
-async function PlaylistDetails({ code, username }) {
-  const { missedTracks, playlistId } = await generateplaylist({
-    code,
-    username,
-  });
+async function PlaylistDetails({
+  code,
+  username,
+}: {
+  code: string;
+  username: string;
+}) {
+  let missedTracks = [];
+  let playlistId = "";
+  try {
+    const response = await generateplaylist({
+      code,
+      username,
+    });
+    missedTracks = response.missedTracks;
+    playlistId = response.playlistId;
+  } catch (error) {
+    redirect(`/?error=${error}`);
+  }
 
   return (
     <section className="mx-auto w-[50%]">
@@ -27,13 +42,7 @@ async function PlaylistDetails({ code, username }) {
           </ul>
         </div>
       )}
-      <iframe
-        src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator`}
-        width="100%"
-        height="380"
-        allowFullScreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      ></iframe>
+      <Playlist playlistId={playlistId} />
     </section>
   );
 }
