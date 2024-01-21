@@ -16,7 +16,7 @@ const scopes = [
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri: `https://${process.env.VERCEL_URL}/shopify-auth-callback`,
+  redirectUri: `https://playlist-generate-next-14.vercel.app/shopify-auth-callback`,
 });
 
 export async function handleSpotifyAuthCheck({
