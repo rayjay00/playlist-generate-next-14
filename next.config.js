@@ -21,6 +21,15 @@ const nextConfig = {
           },
         ],
       },
+      {
+        source: "https://embed-cdn.spotifycdn.com/_next/static/css/*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-cache",
+          },
+        ],
+      },
     ];
   },
 };
