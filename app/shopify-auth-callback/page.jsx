@@ -41,11 +41,11 @@ async function PlaylistDetails({ code, username }) {
 export default async function ShopifyAuthCallback({ searchParams }) {
   const { code, state: username } = searchParams;
   if (!code) {
-    redirect('/?error="Error in Shopify auth. No code provided"');
+    redirect("/?error=Error in Shopify auth. No code provided");
   }
 
   if (!username) {
-    redirect('/?error="Error in Shopify auth state. No username provided"');
+    redirect("/?error=Error in Shopify auth state. No username provided");
   }
 
   return (
