@@ -13,13 +13,11 @@ const scopes = [
   "playlist-modify-public",
 ];
 
-console.log("vercel URL", process.env.VERCEL_URL);
-
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   redirectUri: process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/shopify-auth-callback`
+    ? `https://playlist-generate-next-14.vercel.app/shopify-auth-callback`
     : `http://localhost:3000/shopify-auth-callback`,
 });
 

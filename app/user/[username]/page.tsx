@@ -55,7 +55,10 @@ export default async function User({
             </div>
           </div>
         </div>
-        <Button username={params.username} />
+        <Button
+          username={params.username}
+          hasLovedTracks={lovedTracksCount > 0}
+        />
       </section>
     </>
   );

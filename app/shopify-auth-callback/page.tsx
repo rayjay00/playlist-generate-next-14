@@ -22,7 +22,7 @@ async function PlaylistDetails({
     missedTracks = response.missedTracks;
     playlistId = response.playlistId;
   } catch (error) {
-    redirect(`/?error=${error}`);
+    redirect(`/user/${username}`);
   }
 
   return (
@@ -34,7 +34,7 @@ async function PlaylistDetails({
           </h2>
           <ul className="py-5">
             {missedTracks.map((track) => (
-              <li key={track.id}>
+              <li key={track.name}>
                 <span className="font-bold pt-2">{track.artist} </span>-{" "}
                 {track.name}
               </li>
