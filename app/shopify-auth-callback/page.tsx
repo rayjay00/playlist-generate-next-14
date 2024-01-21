@@ -47,7 +47,14 @@ async function PlaylistDetails({
   );
 }
 
-export default async function ShopifyAuthCallback({ searchParams }) {
+export default async function ShopifyAuthCallback({
+  searchParams,
+}: {
+  searchParams: {
+    code: string;
+    state: string;
+  };
+}) {
   const { code, state: username } = searchParams;
   if (!code) {
     redirect("/?error=Error in Shopify auth. No code provided");
