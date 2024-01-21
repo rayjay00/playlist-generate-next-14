@@ -17,7 +17,7 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   redirectUri: `${
-    process.env.BASE_URL || "http://localhost:3000"
+    process.env.VERCEL_URL || "http://localhost:3000"
   }/shopify-auth-callback`,
 });
 
@@ -59,12 +59,13 @@ export async function generateplaylist({
   const missedTracks = [] as MissedTrack[];
 
   const trackSearchResult = await Promise.all(
-    tracks.splice(0, 100).map(async (track) => {
+    // todo: fix type
+    tracks.splice(0, 100).map(async (track: any) => {
       const trackSearchResults = await spotifyApi.searchTracks(
         track.artist.name
       );
 
-      const foundTrack = trackSearchResults.body.tracks.items.find(
+      const foundTrack = trackSearchResults.body?.tracks?.items.find(
         (searchTrack) =>
           searchTrack.artists[0].name
             .toLowerCase()
@@ -83,12 +84,16 @@ export async function generateplaylist({
   );
 
   await spotifyApi.addTracksToPlaylist(
+    // todo: fix type
+    // @ts-expect-error
     playlistResult.body.id,
     trackSearchResult.filter((item) => Boolean(item))
   );
 
   return {
     missedTracks,
+    // todo: fix type
+    // @ts-expect-error
     playlistId: playlistResult.body.id,
   };
 }

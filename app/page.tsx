@@ -1,6 +1,7 @@
 import { getLovedTracksAndRedirect } from "./actions";
 
-export default function Home({ searchParams }) {
+// todo: fix type
+export default function Home({ searchParams }: { searchParams: any }) {
   const errorMessage = searchParams.error;
   return (
     <main className="flex min-h-screen flex-col items-center justify-start p-24">

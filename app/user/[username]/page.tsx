@@ -19,7 +19,14 @@ async function getUser(username: string) {
   return { tracks: songsData, user: userData.user };
 }
 
-export default async function User({ params }) {
+// todo: fix type
+export default async function User({
+  params,
+}: {
+  params: {
+    username: string;
+  };
+}) {
   const { tracks, user } = await getUser(params.username);
   const lovedTracksCount = tracks.lovedtracks.track.length;
 
