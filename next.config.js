@@ -13,20 +13,11 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/spotify-auth-callback",
+        source: "/_next/static/css/:path*", // Use a wildcard for dynamic values
         headers: [
           {
             key: "Cache-Control",
-            value: "no-cache",
-          },
-        ],
-      },
-      {
-        source: "https://embed-cdn.spotifycdn.com/_next/static/css/*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "no-cache",
+            value: "no-store, must-revalidate",
           },
         ],
       },
